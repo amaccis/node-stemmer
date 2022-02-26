@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          user: root
       - name: Install dependencies
         run: npm run install
       - name: Run tests
