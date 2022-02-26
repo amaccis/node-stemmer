@@ -1,0 +1,42 @@
+import * as ffi from 'ffi-napi';
+import * as ref from 'ref-napi';
+import * as array from 'ref-array-di';
+import * as struct from 'ref-struct-di';
+
+const ArrayType = array(ref);
+const StructType = struct(ref)
+
+
+const sb_stemmer = ref.refType(StructType())
+
+const libstemmer = ffi.Library('libstemmer', {
+    "sb_stemmer_list": [ ArrayType('string'), [] ],
+    "sb_stemmer_new": [ sb_stemmer, [ 'string', 'string' ] ],
+    "sb_stemmer_delete": [ 'void', [ sb_stemmer ]],
+    "sb_stemmer_stem": [ 'string', [ sb_stemmer, 'string', 'int' ] ],
+    "sb_stemmer_length": [ 'int', [ sb_stemmer ] ]
+});
+
+
+const sbStemmerList = libstemmer.sb_stemmer_list()
+console.log(sbStemmerList.length)
+
+sbStemmerList.length = 100
+
+let i = 0
+while (sbStemmerList[i] != null) {
+    console.log(sbStemmerList[i])
+    i++
+}
+
+
+/////////////////////
+
+
+let sbStemmer = libstemmer.sb_stemmer_new('italian', 'UTF_8')
+let word = 'camminare'
+console.log(word.length)
+let sbStemmerStem = libstemmer.sb_stemmer_stem(sbStemmer, word, word.length)
+let sbStemmerLength = libstemmer.sb_stemmer_length(sbStemmer)
+console.log(sbStemmerLength)
+console.log(sbStemmerStem)

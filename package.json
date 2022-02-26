@@ -1,0 +1,25 @@
+{
+  "name": "node-stemmer",
+  "version": "0.0.1",
+  "description": "A Node.js interface to the Snowball stemming algorithms",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Andrea Maccis <andrea.maccis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/ffi-napi": "^4.0.5",
+    "@types/jest": "^27.4.0",
+    "@types/ref-array-di": "^1.2.3",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "ref-array-di": "^1.2.2"
+  }
+}
