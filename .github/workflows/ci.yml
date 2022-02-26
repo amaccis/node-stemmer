@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: amaccis/node-libstemmer:1.0.0
+      image: amaccis/node-libstemmer:1.0.1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
