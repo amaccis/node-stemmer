@@ -7,9 +7,16 @@
     "test": "jest",
     "build": "tsc"
   },
-  "keywords": [],
+  "keywords": [
+    "stemmer",
+    "snowball"    
+  ],
   "author": "Andrea Maccis <andrea.maccis@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amaccis/node-stemmer.git"
+  },
   "devDependencies": {
     "@types/ffi-napi": "^4.0.5",
     "@types/jest": "^27.4.0",
