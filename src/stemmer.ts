@@ -17,6 +17,7 @@ export default class Stemmer {
         const libstemmer = Libstemmer.getLibstemmer()
         const sbStemmerList = libstemmer.sb_stemmer_list();
         // FIXME
+        // does it exist a way to get the Buffer length without setting it?
         sbStemmerList.length = 100
         let algorithms: string[] = [];
         let i = 0;
