@@ -86,17 +86,19 @@ const stemWordsData = [
             'port'
         ]
     },
-    //{
-    //    algorithm: 'portuguese',
-    //    words: [
-    //        'atribuição',
-    //        'obrigações'
-    //    ],
-    //    stems: [
-    //        'atribuiçã',
-    //        'obrig'
-    //    ]
-    //}
+    /*
+    {
+        algorithm: 'portuguese',
+        words: [
+            'atribuição',
+            'obrigações'
+        ],
+        stems: [
+            'atribuiçã',
+            'obrig'
+        ]
+    }
+    */
 ];
 describe.each(stemWordsData)(`test stemWords() method`, (item) => {
     test(`using ${item.algorithm} algorithm for the words ${item.words} the stems should be ${item.stems}`, () => {
