@@ -1,2 +1,5 @@
 node_modules/
 lib/
+.ash_history
+.npm/
+.cache/

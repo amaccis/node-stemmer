@@ -1,5 +1,7 @@
 import { Libstemmer } from "./libstemmer";
 import * as ref from 'ref-napi';
+import * as array from 'ref-array-di';
+
 
 export default class Stemmer {
 
@@ -7,24 +9,31 @@ export default class Stemmer {
 
     private stemmer;
  
-    constructor(algorithm: string) {
+    constructor(algorithm: string) 
+    {
         this.libstemmer = Libstemmer.getLibstemmer();
-        this.stemmer = this.libstemmer.sb_stemmer_new(algorithm, 'UTF_8')
+        this.stemmer = this.libstemmer.sb_stemmer_new(
+            algorithm, 
+            'UTF_8'
+        );
     }
-
+    
     static algorithms(): string[]
     {
-        const libstemmer = Libstemmer.getLibstemmer()
-        const sbStemmerList = libstemmer.sb_stemmer_list();
-        // FIXME
-        // does it exist a way to get the Buffer length without setting it?
-        sbStemmerList.length = 100
+        const ArrayType = array(ref);
+
+        const CStringType = ref.types.CString 
+        const CStringArray = ArrayType(CStringType)
+
+        const libstemmer = Libstemmer.getLibstemmer();
+        const sbStemmerList = CStringArray.untilZeros(libstemmer.sb_stemmer_list());
+
         let algorithms: string[] = [];
-        let i = 0;
-        while (sbStemmerList[i].length) {
-            algorithms.push(ref.readCString(sbStemmerList[i]));
-            i++;
-        }
+
+        Array.from(sbStemmerList).forEach(item => {
+            algorithms.push(<string>item);
+        })
+
         return algorithms;
     }
 
@@ -40,6 +49,7 @@ export default class Stemmer {
     {
         let stems: string[] = [];
         words.forEach(word => stems.push(this.stemWord(word)));
+
         return stems;
     }
 

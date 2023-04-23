@@ -32,7 +32,7 @@ describe("test algorithms() method", () => {
         'turkish',
         'yiddish'
     ];
-    it(`should return these algorithms: ${algorithms}`, () => {
+    test(`should return these algorithms: ${algorithms}`, () => {
         expect(Stemmer.algorithms()).toStrictEqual(algorithms)
     });
 });
@@ -48,14 +48,16 @@ const stemWordData = [
         word: 'camminare',
         stem: 'cammin'
     },
-    //{
-    //    algorithm: 'portuguese',
-    //    word: 'atribuição',
-    //    stem: 'atribuiçã'
-    //}
+    /*
+    {
+        algorithm: 'portuguese',
+        word: 'atribuição',
+        stem: 'atribuiçã'
+    }
+    */
 ];
 describe.each(stemWordData)(`test stemWord() method`, (item) => {
-    it(`using ${item.algorithm} algorithm for the word ${item.word} the stem should be ${item.stem}`, () => {
+    test(`using ${item.algorithm} algorithm for the word ${item.word} the stem should be ${item.stem}`, () => {
         const stemmer = new Stemmer(item.algorithm);
         expect(stemmer.stemWord(item.word)).toBe(item.stem);
     });
@@ -84,20 +86,22 @@ const stemWordsData = [
             'port'
         ]
     },
-    //{
-    //    algorithm: 'portuguese',
-    //    words: [
-    //        'atribuição',
-    //        'obrigações'
-    //    ],
-    //    stems: [
-    //        'atribuiçã',
-    //        'obrig'
-    //    ]
-    //}
+    /*
+    {
+        algorithm: 'portuguese',
+        words: [
+            'atribuição',
+            'obrigações'
+        ],
+        stems: [
+            'atribuiçã',
+            'obrig'
+        ]
+    }
+    */
 ];
 describe.each(stemWordsData)(`test stemWords() method`, (item) => {
-    it(`using ${item.algorithm} algorithm for the words ${item.words} the stems should be ${item.stems}`, () => {
+    test(`using ${item.algorithm} algorithm for the words ${item.words} the stems should be ${item.stems}`, () => {
         const stemmer = new Stemmer(item.algorithm);
         expect(stemmer.stemWords(item.words)).toStrictEqual(item.stems);
     });
