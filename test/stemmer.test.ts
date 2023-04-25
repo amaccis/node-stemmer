@@ -48,13 +48,11 @@ const stemWordData = [
         word: 'camminare',
         stem: 'cammin'
     },
-    /*
     {
         algorithm: 'portuguese',
         word: 'atribuição',
         stem: 'atribuiçã'
     }
-    */
 ];
 describe.each(stemWordData)(`test stemWord() method`, (item) => {
     test(`using ${item.algorithm} algorithm for the word ${item.word} the stem should be ${item.stem}`, () => {
@@ -86,7 +84,6 @@ const stemWordsData = [
             'port'
         ]
     },
-    /*
     {
         algorithm: 'portuguese',
         words: [
@@ -98,7 +95,6 @@ const stemWordsData = [
             'obrig'
         ]
     }
-    */
 ];
 describe.each(stemWordsData)(`test stemWords() method`, (item) => {
     test(`using ${item.algorithm} algorithm for the words ${item.words} the stems should be ${item.stems}`, () => {

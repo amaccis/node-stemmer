@@ -1,6 +1,6 @@
 {
   "name": "node-stemmer",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A Node.js interface to the Snowball stemming algorithms",
   "main": "lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "keywords": [
     "stemmer",
-    "snowball"    
+    "snowball"
   ],
   "author": "Andrea Maccis <andrea.maccis@gmail.com>",
   "license": "MIT",

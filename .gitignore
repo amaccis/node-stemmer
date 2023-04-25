@@ -3,3 +3,4 @@ lib/
 .ash_history
 .npm/
 .cache/
+.npmrc
