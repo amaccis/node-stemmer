@@ -1,7 +1,7 @@
 import { Libstemmer } from "./libstemmer";
 import * as ref from 'ref-napi';
 import * as array from 'ref-array-di';
-
+import { Blob } from 'buffer';
 
 export default class Stemmer {
 
@@ -11,11 +11,12 @@ export default class Stemmer {
  
     constructor(algorithm: string) 
     {
-        this.libstemmer = Libstemmer.getLibstemmer();
+        this.libstemmer = Libstemmer.getLibstemmer();        
         this.stemmer = this.libstemmer.sb_stemmer_new(
             algorithm, 
             'UTF_8'
         );
+        
     }
     
     static algorithms(): string[]
@@ -39,7 +40,8 @@ export default class Stemmer {
 
     stemWord(word: string): string
     {
-        const sbStemmerStem = this.libstemmer.sb_stemmer_stem(this.stemmer, word, word.length);
+        const size = new Blob([word]).size;
+        const sbStemmerStem = this.libstemmer.sb_stemmer_stem(this.stemmer, word, size);
         const sbStemmerLength = this.libstemmer.sb_stemmer_length(this.stemmer);
         
         return ref.readCString(sbStemmerStem).substring(0, sbStemmerLength);
