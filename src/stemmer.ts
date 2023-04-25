@@ -11,7 +11,7 @@ export default class Stemmer {
  
     constructor(algorithm: string) 
     {
-        this.libstemmer = Libstemmer.getLibstemmer();        
+        this.libstemmer = Libstemmer.getLibstemmer();
         this.stemmer = this.libstemmer.sb_stemmer_new(
             algorithm, 
             'UTF_8'
