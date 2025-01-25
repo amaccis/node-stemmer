@@ -15,8 +15,8 @@ jobs:
       matrix:
         container:
           #- "amaccis/node-libstemmer:20.18.2-2.2.0"
-          #- "amaccis/node-libstemmer:22.13.1-2.2.0"
-          - "amaccis/node-libstemmer:20-2.2.0"
+          - "amaccis/node-libstemmer:22.13.1-2.2.0"
+          #- "amaccis/node-libstemmer:20-2.2.0"
 
     container:
       image: ${{ matrix.container }}
