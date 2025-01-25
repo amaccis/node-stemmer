@@ -7,10 +7,19 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 1
+      matrix:
+        container:
+          - "amaccis/node-libstemmer:23.13.1-2.2.0"
+          - "amaccis/node-libstemmer:20.18.2-2.2.0"
+
     container:
-      image: amaccis/node-libstemmer:2.2.0
+      image: ${{ matrix.container }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
