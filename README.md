@@ -14,6 +14,13 @@ You can install Node Stemmer using [npm](https://www.npmjs.com/package/node-stem
 npm i node-stemmer
 ```
 
+## Compatibility
+
+| node-stemmer    | libstemmer |
+| -------- | ------- |
+| 3.0.0  | 3.0.0, 3.0.1    |
+| 1.0.0 | 2.0.0, 2.1.0, 2.2.0     |
+
 ## Usage
 
 ```typescript
