@@ -24,6 +24,8 @@ npm i node-stemmer
 ## Usage
 
 ```typescript
+import { Stemmer, CharacterEncoding } from 'node-stemmer';
+
 const algorithms = Stemmer.algorithms();
 console.log(algorithms);
 /*
@@ -41,9 +43,7 @@ console.log(algorithms);
     'turkish',      'yiddish'
 ]
 */
-```
 
-```typescript
 const algorithm = 'english';
 const word = Buffer.from('cycling');
 const stemmer = new Stemmer(algorithm); // default character encoding is UTF-8
@@ -52,9 +52,7 @@ console.log(stem);
 /*
 cycl
 */
-```
 
-```typescript
 const algorithm = 'basque';
 const word = Buffer.from('aberatsenetakoa');
 const stemmer = new Stemmer(algorithm, CharacterEncoding.ISO_8859_1);
