@@ -1,8 +1,9 @@
 {
   "name": "node-stemmer",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A Node.js interface to the Snowball stemming algorithms",
   "main": "lib/index.js",
+  "module": "lib/index.js",
   "type": "module",
   "scripts": {
     "test": "jest",
