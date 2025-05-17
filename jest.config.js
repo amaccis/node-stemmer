@@ -4,11 +4,13 @@ export default {
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1.ts',
+    "@src/(.*)": "<rootDir>/src/$1",
+    "^(..?/.+).js?$": "$1"
   },
-  globals: {
-    'ts-jest': {
-      useESM: true,
-    },
+  transformIgnorePatterns: ['node_modules'],
+  globals: { 
+    'ts-jest': { 
+      useESM: true 
+    } 
   }
 };
