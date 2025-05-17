@@ -1,7 +1,7 @@
+import { isNullPointer } from "ffi-rs";
 import { Libstemmer } from "./libstemmer";
-import * as ref from 'ref-napi';
-import * as array from 'ref-array-di';
-import { Blob } from 'buffer';
+import { UnavailableAlgorithmError } from "./error/unavailable-algorithm-error";
+import { CharacterEncoding } from "./enum/character-encoding";
 
 export default class Stemmer {
 
@@ -9,45 +9,44 @@ export default class Stemmer {
 
     private stemmer;
  
-    constructor(algorithm: string) 
+    constructor(algorithm: string, charenc: CharacterEncoding = CharacterEncoding.UTF_8) 
     {
         this.libstemmer = Libstemmer.getLibstemmer();
         this.stemmer = this.libstemmer.sb_stemmer_new(
             algorithm, 
-            'UTF_8'
+            charenc
         );
-        
+        if (isNullPointer(this.stemmer)) {
+            throw new UnavailableAlgorithmError('Unavailable algorithm');
+        }
     }
     
     static algorithms(): string[]
     {
-        const ArrayType = array(ref);
-
-        const CStringType = ref.types.CString 
-        const CStringArray = ArrayType(CStringType)
-
         const libstemmer = Libstemmer.getLibstemmer();
-        const sbStemmerList = CStringArray.untilZeros(libstemmer.sb_stemmer_list());
-
+                
+        const sbStemmerList = <Array<string>>libstemmer.sb_stemmer_list();
+        
         let algorithms: string[] = [];
-
+        
         Array.from(sbStemmerList).forEach(item => {
             algorithms.push(<string>item);
-        })
-
+        });
+        
         return algorithms;
     }
 
-    stemWord(word: string): string
+    stemWord(word: Buffer): string
     {
-        const size = new Blob([word]).size;
-        const sbStemmerStem = this.libstemmer.sb_stemmer_stem(this.stemmer, word, size);
-        const sbStemmerLength = this.libstemmer.sb_stemmer_length(this.stemmer);
+        const size = word.length;
+
+        const stem = this.libstemmer.sb_stemmer_stem(this.stemmer, word, size);
+        const length = this.libstemmer.sb_stemmer_length(this.stemmer);
         
-        return ref.readCString(sbStemmerStem).substring(0, sbStemmerLength);
+        return stem.slice(0, length);
     }
 
-    stemWords(words: string[]): string[]
+    stemWords(words: Buffer[]): string[]
     {
         let stems: string[] = [];
         words.forEach(word => stems.push(this.stemWord(word)));
