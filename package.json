@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "A Node.js interface to the Snowball stemming algorithms",
   "main": "lib/index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "tsc"

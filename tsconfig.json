@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
       "target": "es2022",
-      "module": "commonjs",
+      "module": "esnext",
       "declaration": true,
       "outDir": "./lib",
-      "strict": true
+      "strict": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"]
