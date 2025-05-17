@@ -1,7 +1,7 @@
 import { isNullPointer } from "ffi-rs";
-import { Libstemmer } from "./libstemmer";
-import { UnavailableAlgorithmError } from "./error/unavailable-algorithm-error";
-import { CharacterEncoding } from "./enum/character-encoding";
+import { Libstemmer } from "./libstemmer.js";
+import { UnavailableAlgorithmError } from "./error/unavailable-algorithm-error.js";
+import { CharacterEncoding } from "./enum/character-encoding.js";
 
 export default class Stemmer {
 
