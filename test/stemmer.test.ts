@@ -1,18 +1,10 @@
 import Stemmer from '../src/stemmer'
 import { UnavailableAlgorithmError } from '../src/error/unavailable-algorithm-error';
-import { CharacterEncoding } from '../src/enum/character-encoding';
+import { CharacterEncoding } from '../src';
 import { encode } from 'iconv-lite';
 
 describe('test static method algorithms()', () => {
     test('should return an array not empty', () => {
-
-        const algorithm = 'english';
-        const word = Buffer.from('cycling');
-        const stemmer = new Stemmer(algorithm); // default character encoding is UTF-8
-        const stem = stemmer.stemWord(word);
-        console.log(stem);
-
-
         const algorithms = Stemmer.algorithms();
         expect(algorithms).toBeInstanceOf(Array);
         expect(algorithms.length).toBeGreaterThan(0);

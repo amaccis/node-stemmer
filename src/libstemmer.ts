@@ -18,7 +18,7 @@ export class Libstemmer {
                     funcName: 'sb_stemmer_list',
                     retType: arrayConstructor({
                         type: DataType.StringArray,
-                        length: 32  // FIXME 
+                        length: 36  // FIXME unfortunately it needs to be hardcoded
                     }),
                     paramsType: [],
                     paramsValue: []

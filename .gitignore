@@ -4,3 +4,4 @@ lib/
 .npm/
 .cache/
 .npmrc
+.idea/
