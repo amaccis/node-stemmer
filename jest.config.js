@@ -1,6 +1,5 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('jest').Config} */
 export default {
-  preset: 'ts-jest',
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
@@ -8,9 +7,9 @@ export default {
     "^(..?/.+).js?$": "$1"
   },
   transformIgnorePatterns: ['node_modules'],
-  globals: { 
-    'ts-jest': { 
-      useESM: true 
-    } 
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      useESM: true
+    }]
   }
 };
